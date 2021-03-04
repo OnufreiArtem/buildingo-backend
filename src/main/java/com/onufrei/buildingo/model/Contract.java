@@ -29,6 +29,7 @@ public class Contract {
     private LocalDate signedDate;
     private LocalDate startDate;
     private LocalDate finishDate;
+    private Customer customer;
     private boolean finished;
     private int reward;
     private List<Building> buildingList;

@@ -25,6 +25,7 @@ public class Brigade {
     private String name;
     private String description;
     private Employee chief;
+    private BrigadeSpecification specification;
     private boolean isFree;
     private List<Employee> employeeList;
     private LocalDateTime created_at;

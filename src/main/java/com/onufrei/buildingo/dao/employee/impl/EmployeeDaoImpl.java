@@ -6,6 +6,7 @@ import com.onufrei.buildingo.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -41,6 +42,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee update(String id, Employee nEmployee) {
         Employee employeeToUpdate = null;
         if(this.delete(id) != null) {
+            nEmployee.setModified_at(LocalDateTime.now());
             db.employees.add(nEmployee);
             employeeToUpdate = nEmployee;
         }
@@ -52,6 +54,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee add(Employee employee) {
         Employee employeeToAdd = null;
         if(this.findById(employee.getId()) == null) {
+            employee.setCreated_at(LocalDateTime.now());
+            employee.setModified_at(LocalDateTime.now());
             db.employees.add(employee);
             employeeToAdd = employee;
         }

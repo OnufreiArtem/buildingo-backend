@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link th:href="@{/styles/style2.css}" rel="stylesheet" />
+    <title th:text="${'Edit ' + empl.name + ' ' + empl.surname }"></title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand logo fs-1" href="#">Building organization</a>
+        </div>
+    </nav>
+
+    <h1 class="fs-3 text-left p-5" >Edit Employee:</h1>
+    <form class="container" th:action="${'/employee/update/' + empl.id}" th:object="${empl}" method="post">
+        <div class="form-group process-form border">
+            <p>Name: <input class="form-control" type="text" th:field="*{name}" th:value="empl.name" /></p>
+            <p>Surname: <input class="form-control" type="text" th:field="*{surname}" th:value="empl.surname" /></p>
+            <p>Phone Number: <input class="form-control" type="text" th:field="*{phoneNumber}" th:value="empl.phoneNumber" /></p>
+            <p>Email: <input class="form-control" type="text" th:field="*{email}" th:value="empl.email" /></p>
+            <p>Home Address: <input class="form-control" type="text" th:field="*{homeAddress}" th:value="empl.homeAddress" /></p>
+            <p>Resume Url: <input class="form-control" type="text" th:field="*{resumeUrl}" th:value="empl.resumeUrl" /></p>
+            <p>Date of Birth: <input class="form-control" type="date" th:field="*{dateOfBirth}" th:value="empl.dateOfBirth" /></p>
+            <p>Hired Date: <input class="form-control" type="date" th:field="*{hireDate}" th:value="empl.hireDate" /></p>
+            <p>Fired Date: <input class="form-control" type="date" th:field="*{firedDate}" th:value="empl.firedDate" /></p>
+            <p><input class="btn btn-primary" type="submit" value="Edit"></p>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+body{
+    background-color: black;
+}
+
+.logo {
+    font-size: 10em;
+}
+
+td, th {
+    min-width: 150px;
+}
+
+.delete-icon {
+    background-image: url("../img/delete-24px.svg");
+}
+
+.edit-icon {
+    background-image: url("../img/mode_edit-24px.svg");
+}
+
+.icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    margin: auto auto;
+    padding: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.icon:hover {
+    background-color: #cccccc;
+}
+
+
+
+.select-check {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: auto auto;
+
+}
+
+.delete-container {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+}
+
+.hint {
+    color: #ccc;
+}
+
+.delete-btn {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--bs-primary);
+    color: white;
+    padding: 20px;
+    font-size: 1.6rem;
+}

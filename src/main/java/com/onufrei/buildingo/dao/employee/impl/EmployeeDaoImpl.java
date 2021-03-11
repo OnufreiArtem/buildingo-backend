@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * The representation of the object of EmployeeDaoImpl
@@ -54,6 +55,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee add(Employee employee) {
         Employee employeeToAdd = null;
         if(this.findById(employee.getId()) == null) {
+            employee.setId(UUID.randomUUID().toString());
             employee.setCreated_at(LocalDateTime.now());
             employee.setModified_at(LocalDateTime.now());
             db.employees.add(employee);

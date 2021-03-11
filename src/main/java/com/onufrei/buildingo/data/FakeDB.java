@@ -1,6 +1,7 @@
 package com.onufrei.buildingo.data;
 
 import com.onufrei.buildingo.model.Employee;
+import com.onufrei.buildingo.model.EmployeeSpecification;
 import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,27 @@ import java.util.*;
 
 @Component
 public class FakeDB {
+    public List<EmployeeSpecification> specifications = new ArrayList<>(
+            Arrays.asList(
+
+                    EmployeeSpecification.builder()
+                            .id(UUID.randomUUID().toString())
+                            .name("Бугалтер")
+                            .build(),
+
+                    EmployeeSpecification.builder()
+                            .id(UUID.randomUUID().toString())
+                            .name("Архітектор")
+                            .build(),
+
+                    EmployeeSpecification.builder()
+                            .id(UUID.randomUUID().toString())
+                            .name("Штукатурщик")
+                            .build()
+
+            )
+    );
+
     public List<Employee> employees = new ArrayList<>(
             Arrays.asList(
                     Employee.builder()
@@ -31,7 +53,7 @@ public class FakeDB {
                             .dateOfBirth(randomDate(30, 40))
                             .hireDate(randomDate(5, 10))
                             .firedDate(randomDate(2, 5))
-                            .specification(null)
+                            .specification(specifications.get(0))
                             .created_at(LocalDateTime.now())
                             .modified_at(LocalDateTime.now())
                             .build(),
@@ -47,7 +69,7 @@ public class FakeDB {
                             .dateOfBirth(randomDate(30, 40))
                             .hireDate(randomDate(5, 10))
                             .firedDate(randomDate(2, 5))
-                            .specification(null)
+                            .specification(specifications.get(0))
                             .created_at(LocalDateTime.now())
                             .modified_at(LocalDateTime.now())
                             .build(),
@@ -63,7 +85,7 @@ public class FakeDB {
                             .dateOfBirth(randomDate(30, 40))
                             .hireDate(randomDate(5, 10))
                             .firedDate(randomDate(2, 5))
-                            .specification(null)
+                            .specification(specifications.get(1))
                             .created_at(LocalDateTime.now())
                             .modified_at(LocalDateTime.now())
                             .build(),
@@ -79,7 +101,7 @@ public class FakeDB {
                             .dateOfBirth(randomDate(30, 40))
                             .hireDate(randomDate(5, 10))
                             .firedDate(randomDate(2, 5))
-                            .specification(null)
+                            .specification(specifications.get(1))
                             .created_at(LocalDateTime.now())
                             .modified_at(LocalDateTime.now())
                             .build(),
@@ -95,7 +117,7 @@ public class FakeDB {
                             .dateOfBirth(randomDate(30, 40))
                             .hireDate(randomDate(5, 10))
                             .firedDate(randomDate(2, 5))
-                            .specification(null)
+                            .specification(specifications.get(2))
                             .created_at(LocalDateTime.now())
                             .modified_at(LocalDateTime.now())
                             .build()

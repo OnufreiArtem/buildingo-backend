@@ -8,11 +8,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-    <div class="container-fluid">
-        <a class="navbar-brand logo fs-1" href="#">Building organization</a>
-    </div>
-</nav>
+<div th:insert="base/navbar :: navbar">  </div>
+
 <div class="container mb-n5">
 
     <form th:action="${'/employee/edit/' + empl.id}" th:object="${empl}" method="post" style="display: flex; justify-content: center; align-items: center;">

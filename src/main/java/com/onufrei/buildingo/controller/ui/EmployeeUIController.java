@@ -1,16 +1,12 @@
 package com.onufrei.buildingo.controller.ui;
 
-import com.onufrei.buildingo.data.FakeDB;
-import com.onufrei.buildingo.model.Employee;
+import com.onufrei.buildingo.form.EmployeeForm;
 import com.onufrei.buildingo.service.employee.interfaces.EmployeeService;
 import com.onufrei.buildingo.service.employeeSpecification.interfaces.EmployeeSpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
 
 /**
  * The representation of the object of EmployeeUIController
@@ -32,18 +28,19 @@ public class EmployeeUIController {
     @GetMapping
     public String showEmployees(Model model) {
         model.addAttribute("empls", service.findAll());
-        return "layout";
+        return "employee-list";
     }
 
     @GetMapping("/edit/{id}")
     public String showEdit(@PathVariable String id, Model model) {
         model.addAttribute("empl", service.findById(id));
+        model.addAttribute("specs", specService.findAll());
         return "edit";
     }
 
     @GetMapping("/add")
     public String showAdd(Model model) {
-        model.addAttribute("empl", new Employee());
+        model.addAttribute("empl", new EmployeeForm());
         model.addAttribute("specs", specService.findAll());
         return "add";
     }
@@ -55,24 +52,18 @@ public class EmployeeUIController {
         return "redirect:/employee";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateEmployee(@PathVariable String id, @ModelAttribute Employee employee, Model model) {
-        Employee old = service.findById(id);
-        if(old != null) {
-            employee.setId(old.getId());
-            employee.setCreated_at(old.getCreated_at());
-            service.update(id, employee);
-        }
+    @PostMapping("/edit/{id}")
+    public String updateEmployee(@PathVariable String id, @ModelAttribute EmployeeForm employeeForm, Model model) {
+
+        service.delete(id);
+        service.addFromForm(employeeForm);
 
         return "redirect:/employee";
     }
 
     @PostMapping("/add")
-    public String addEmployee(@ModelAttribute Employee employee, @RequestParam("specification") String specId, Model model) {
-        if(!specId.equals("Nan")) {
-          employee.setSpecification(specService.findById(specId));
-        }
-        service.add(employee);
+    public String addEmployee(@ModelAttribute EmployeeForm employeeForm, Model model) {
+        service.addFromForm(employeeForm);
         return "redirect:/employee";
     }
 

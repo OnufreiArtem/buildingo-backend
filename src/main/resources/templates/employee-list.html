@@ -43,9 +43,10 @@
                 <tbody>
                 <tr th:each="empl : ${empls}" class="fs-6">
                     <!--<td><input class="select-check" onclick="updateStates()" type="checkbox" th:id="${empl.id + '_checkbox'}"></td>-->
-                    <td style="min-width: 120px;">
-                        <a th:href="${'employee/edit/' + empl.id}" class="icon edit-icon m-auto"></a>
-                        <a th:href="${'employee/delete/' + empl.id}" class="icon delete-icon m-auto"></a>
+                    <td style="min-width: 150px;">
+                        <a th:href="${'/employee/' + empl.id}"  title="View employee" class="icon eye-icon m-auto"></a>
+                        <a th:href="${'/employee/edit/' + empl.id}"  title="Edit employee" class="icon edit-icon m-auto"></a>
+                        <a th:href="${'/employee/delete/' + empl.id}"  title="Delete employee" class="icon delete-icon m-auto"></a>
                     </td>
                     <th scope="row" th:text="${empl.id}"></th>
                     <td th:text="${empl.name}"></td>
@@ -57,7 +58,7 @@
                     <td th:text="${empl.dateOfBirth}"></td>
                     <td th:text="${empl.hireDate}"></td>
                     <td th:text="${empl.firedDate}"></td>
-                    <td th:text="${empl.specification.name}"></td>
+                    <td th:text="${empl.specification != null} ? ${empl.specification?.name} : 'Not specified'"></td>
                     <td th:text="${empl.created_at}"></td>
                     <td th:text="${empl.modified_at}"></td>
 

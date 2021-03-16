@@ -24,7 +24,7 @@ public class FakeDB {
 
                     EmployeeSpecification.builder()
                             .id(UUID.randomUUID().toString())
-                            .name("Бугалтер")
+                            .name("Бухгалтер")
                             .build(),
 
                     EmployeeSpecification.builder()

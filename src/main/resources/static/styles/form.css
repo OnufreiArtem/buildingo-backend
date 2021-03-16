@@ -1,0 +1,12 @@
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field > input .form-field > label {
+    display: block;
+}
+
+.submit-btn {
+    width: 100%;
+}

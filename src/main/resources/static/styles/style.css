@@ -1,8 +1,3 @@
-
-body{
-    background-color: black;
-}
-
 .logo {
     font-size: 10em;
 }
@@ -68,4 +63,20 @@ td, th {
     color: white;
     padding: 20px;
     font-size: 1.6rem;
+}
+
+.container-fluid {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-items-container {
+    padding-left: 5%;
+    padding-right: 5%;
 }

@@ -52,8 +52,8 @@
                 <div class="form-field">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Specification:</label><br>
                 <select class="custom-select form-select mr-sm-2" name="specification" id="inlineFormCustomSelect">
-                    <option value="Nan" selected>Choose...</option>
-                    <option th:each="spec : ${specs}" th:value="${spec.id}" th:text="${spec.name}"></option>
+                    <option value="Nan" th:selected="${empl.specification == null}">Choose...</option>
+                    <option th:each="spec : ${specs}" th:value="${spec.id}" th:text="${spec.name}" th:selected="${empl.specification?.id == spec.id}"></option>
                 </select>
                 </div>
 

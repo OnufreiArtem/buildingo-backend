@@ -38,6 +38,12 @@ public class EmployeeUIController {
         return "edit";
     }
 
+    @GetMapping("/{id}")
+    public String showEmployee(@PathVariable String id, Model model) {
+        model.addAttribute("empl", service.findById(id));
+        return "view";
+    }
+
     @GetMapping("/add")
     public String showAdd(Model model) {
         model.addAttribute("empl", new EmployeeForm());

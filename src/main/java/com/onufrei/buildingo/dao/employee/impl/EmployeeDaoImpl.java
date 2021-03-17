@@ -43,11 +43,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee update(String id, Employee nEmployee) {
         Employee employeeToUpdate = null;
         if(this.delete(id) != null) {
+            nEmployee.setId(id);
             nEmployee.setModified_at(LocalDateTime.now());
             db.employees.add(nEmployee);
             employeeToUpdate = nEmployee;
         }
-
         return employeeToUpdate;
     }
 

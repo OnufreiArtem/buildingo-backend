@@ -55,15 +55,16 @@ public class EmployeeUIController {
     @PostMapping("/edit/{id}")
     public String updateEmployee(@PathVariable String id, @ModelAttribute EmployeeForm employeeForm, Model model) {
 
-        service.delete(id);
-        service.addFromForm(employeeForm);
+        var employeeToUpdate = service.getEmployeeFromForm(id, employeeForm);
+        service.update(id, employeeToUpdate);
 
         return "redirect:/employee";
     }
 
     @PostMapping("/add")
     public String addEmployee(@ModelAttribute EmployeeForm employeeForm, Model model) {
-        service.addFromForm(employeeForm);
+        var employeeToUpdate = service.getEmployeeFromForm(null, employeeForm);
+        service.add(employeeToUpdate);
         return "redirect:/employee";
     }
 

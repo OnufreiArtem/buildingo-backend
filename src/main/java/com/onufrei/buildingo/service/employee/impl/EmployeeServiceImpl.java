@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * The representation of the object of EmployeeServiceImpl
@@ -53,12 +54,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee addFromForm(EmployeeForm form) {
+    public Employee getEmployeeFromForm(String id, EmployeeForm form) {
         var specification = !form.getSpecification().equals("Nan")
                 ? specService.findById(form.getSpecification()) : null;
 
-        var employee = Employee
+        String nId = (id == null || id.equals("")) ? UUID.randomUUID().toString() : id;
+
+        return Employee
                 .builder()
+                .id(nId)
                 .name(form.getName())
                 .surname(form.getSurname())
                 .phoneNumber(form.getPhoneNumber())
@@ -72,10 +76,5 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .modified_at(form.getModified_at())
                 .specification(specification)
                 .build();
-
-        this.add(employee);
-
-        return employee;
     }
-
 }

@@ -10,6 +10,6 @@ public interface EmployeeService {
     Employee delete(String id);
     Employee update(String id, Employee nEmployee);
     Employee add(Employee employee);
-    Employee addFromForm(EmployeeForm form);
+    Employee getEmployeeFromForm(String id, EmployeeForm form);
     List<Employee> findAll();
 }

@@ -5,15 +5,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link th:href="@{/styles/style.css}" rel="stylesheet" />
-    <title>See all employees</title>
+    <link th:href="@{/styles/view.css}" rel="stylesheet" />
+    <title th:text="${'Employee view: ' + empl.name + ' ' + empl.surname}"></title>
 </head>
 <body>
     <div th:insert="base/navbar :: navbar"></div>
 
     <div class="container-fluid">
-        <h1 th:text="${'Employee: ' + empl.name + ' ' + empl.surname}"></h1>
+        <div class="card shadow">
+            <h2 class="card__title" th:text="${empl.name + ' ' + empl.surname}"></h2>
+            <p class="card__function-btns">
+                <a th:href="${'/employee/edit/' + empl.id}"  title="Edit employee" class="icon edit-icon m-auto"></a>
+                <a th:href="${'/employee/delete/' + empl.id}"  title="Delete employee" class="icon delete-icon m-auto"></a>
+            </p>
 
-
+            <p class="card__field">Employee ID: <span class="important" th:text="${empl.id}"></span></p>
+            <p class="card__field">Date of birth: <span class="important" th:text="${empl.dateOfBirth}"></span></p>
+            <p class="card__field">Home address: <span class="important" th:text="${empl.homeAddress}"></span></p>
+            <p class="card__field">Phone number: <a th:href="${'tel:' + empl.phoneNumber}"><span class="important-link" th:text="${empl.phoneNumber}"></span></a></p>
+            <p class="card__field">Employees specification: <span class="important" th:text="${empl.specification?.name}"></span></p>
+            <p class="card__field">Was added: <span class="important" th:text="${empl.created_at}"></span></p>
+            <p class="card__field">Was modified: <span class="important" th:text="${empl.modified_at}"></span></p>
+            <div style="text-align: center; padding-top: 7%;">
+                <a class="btn btn-outline-primary btn-lg" href="/employee">Back to all employees</a>
+            </div>
+        </div>
     </div>
 
 

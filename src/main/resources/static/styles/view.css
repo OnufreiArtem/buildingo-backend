@@ -1,0 +1,37 @@
+.container-fluid {
+    padding: 7% 15%;
+    text-align: center;
+}
+
+.card {
+    text-align: left;
+    padding: 2.5rem;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.card__function-btns {
+    text-align: center;
+}
+
+.card__title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+}
+
+.card__field {
+    font-size: 1.3rem;
+}
+
+.important {
+    font-size: 1.5rem;
+    color: var(--bs-dark);
+    font-weight: bold;
+}
+
+.important-link {
+    font-size: 1.5rem;
+    color: var(--bs-primary);
+    font-weight: bold;
+}

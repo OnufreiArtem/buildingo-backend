@@ -1,6 +1,7 @@
 package com.onufrei.buildingo.controller.ui;
 
 import com.onufrei.buildingo.form.EmployeeForm;
+import com.onufrei.buildingo.model.Employee;
 import com.onufrei.buildingo.service.employee.interfaces.EmployeeService;
 import com.onufrei.buildingo.service.employeeSpecification.interfaces.EmployeeSpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,9 +61,15 @@ public class EmployeeUIController {
 
     @PostMapping("/edit/{id}")
     public String updateEmployee(@PathVariable String id, @ModelAttribute EmployeeForm employeeForm, Model model) {
+        Employee processedEmployee = service.findById(id);
+        if(processedEmployee != null) {
+            Employee employeeToUpdate = service.getEmployeeFromForm(id, employeeForm);
+            employeeToUpdate.setId(id);
+            employeeToUpdate.setCreated_at(processedEmployee.getCreated_at());
+            employeeToUpdate.setModified_at(processedEmployee.getModified_at());
+            service.update(id, employeeToUpdate);
+        }
 
-        var employeeToUpdate = service.getEmployeeFromForm(id, employeeForm);
-        service.update(id, employeeToUpdate);
 
         return "redirect:/employee";
     }

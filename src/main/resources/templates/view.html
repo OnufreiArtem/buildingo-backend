@@ -24,6 +24,8 @@
             <p class="card__field">Home address: <span class="important" th:text="${empl.homeAddress}"></span></p>
             <p class="card__field">Phone number: <a th:href="${'tel:' + empl.phoneNumber}"><span class="important-link" th:text="${empl.phoneNumber}"></span></a></p>
             <p class="card__field">Employees specification: <span class="important" th:text="${empl.specification?.name}"></span></p>
+            <p class="card__field">Was hired: <span class="important" th:text="${empl.hireDate}"></span></p>
+            <p class="card__field">Was fired: <span class="important" th:text="${empl.firedDate}"></span></p>
             <p class="card__field">Was added: <span class="important" th:text="${empl.created_at}"></span></p>
             <p class="card__field">Was modified: <span class="important" th:text="${empl.modified_at}"></span></p>
             <div style="text-align: center; padding-top: 7%;">

@@ -78,5 +78,11 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll("input[type=date]")
+        .forEach(inp => inp.addEventListener("keydown", e => {if (e.keyCode === 32) inp.value=""}))
+</script>
+
 </body>
 </html>

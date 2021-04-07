@@ -1,13 +1,15 @@
 package com.onufrei.buildingo.service.employee.impl;
 
-import com.onufrei.buildingo.dao.employee.interfaces.EmployeeDao;
 import com.onufrei.buildingo.form.EmployeeForm;
 import com.onufrei.buildingo.model.Employee;
+import com.onufrei.buildingo.repos.EmployeeRepository;
 import com.onufrei.buildingo.service.employee.interfaces.EmployeeService;
 import com.onufrei.buildingo.service.employeeSpecification.interfaces.EmployeeSpecificationService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,34 +25,43 @@ import java.util.UUID;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    EmployeeDao dao;
+    EmployeeRepository repo;
 
     @Autowired
     EmployeeSpecificationService specService;
 
     @Override
     public Employee findById(String id) {
-        return dao.findById(id);
+        return repo.findById(id).orElse(null);
     }
 
     @Override
     public Employee delete(String id) {
-        return dao.delete(id);
+        Employee employeeToDelete = repo.findById(id).orElse(null);
+        if(employeeToDelete != null) {
+            repo.delete(employeeToDelete);
+        }
+        return employeeToDelete;
     }
 
     @Override
     public Employee update(String id, Employee nEmployee) {
-        return dao.update(id, nEmployee);
+        if(repo.findById(id).orElse(null) == null) return null;
+        nEmployee.setId(id);
+        nEmployee.setModified_at(LocalDateTime.now());
+        return repo.save(nEmployee);
     }
 
     @Override
     public Employee add(Employee employee) {
-        return dao.add(employee);
+        employee.setCreated_at(LocalDateTime.now());
+        employee.setModified_at(LocalDateTime.now());
+        return repo.save(employee);
     }
 
     @Override
     public List<Employee> findAll() {
-        return dao.findAll();
+        return repo.findAll();
     }
 
     @Override

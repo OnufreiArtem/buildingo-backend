@@ -15,7 +15,7 @@ import java.util.List;
  * @since 03.03.2021
  */
 
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/employees")
 @RestController
 public class EmployeeRestController {
 
@@ -23,13 +23,13 @@ public class EmployeeRestController {
     EmployeeService service;
 
     @ApiOperation(value = "Returns list of employees")
-    @GetMapping("/employees")
+    @GetMapping("/")
     List<Employee> getAllEmployees() {
         return service.findAll();
     }
 
     @ApiOperation(value = "Adds new employee")
-    @PostMapping("/employees")
+    @PostMapping("/")
     Employee addEmployee(@ApiParam(
                             name = "Employee",
                             value = "The json of Employee. Id can be null. System will assign it automatically")
@@ -38,19 +38,19 @@ public class EmployeeRestController {
     }
 
     @ApiOperation("Gets employee with specified id")
-    @GetMapping("/employees/{id}")
+    @GetMapping("/{id}")
     Employee getEmployee(@ApiParam(name = "Id", value = "The employee id in UUID format") @PathVariable String id) {
         return service.findById(id);
     }
 
     @ApiOperation("Deletes employee with specified id")
-    @DeleteMapping("/employees/{id}")
+    @DeleteMapping("/{id}")
     Employee deleteEmployee(@ApiParam(name = "Id", value = "The employee id in UUID format") @PathVariable String id) {
         return service.delete(id);
     }
 
     @ApiOperation("Updates employee with specified id")
-    @PutMapping("/employees/{id}")
+    @PutMapping("/{id}")
     Employee updateEmployee(@ApiParam(name = "Id", value = "The employee id in UUID format")
                             @RequestBody Employee updatedEmployee, @PathVariable String id) {
         return service.update(id, updatedEmployee);

@@ -42,7 +42,9 @@ public class EmployeeSpecificationServiceImpl implements EmployeeSpecificationSe
 
     @Override
     public EmployeeSpecification update(String id, EmployeeSpecification nEmployeeSpecification) {
+        EmployeeSpecification oEmployeeSpecification = findById(id);
         nEmployeeSpecification.setId(id);
+        nEmployeeSpecification.setCreated_at(oEmployeeSpecification.getCreated_at());
         if(findById(id) != null) {
             nEmployeeSpecification.setModified_at(LocalDateTime.now());
             repo.save(nEmployeeSpecification);

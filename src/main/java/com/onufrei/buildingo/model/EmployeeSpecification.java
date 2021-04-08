@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -14,11 +15,6 @@ import java.time.LocalDateTime;
  * @version 1
  * @since 03.03.2021
  */
-
-/*
-    TODO: Add time format for create_at and modified_at
- */
-
 
 @Data
 @NoArgsConstructor
@@ -35,7 +31,9 @@ public class EmployeeSpecification {
     @ApiModelProperty(notes="Employee specification salary")
     private int salary;
     @ApiModelProperty(notes="The date when Employee specification was created in yyyy-MM-dd format")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime created_at;
     @ApiModelProperty(notes="The date when Employee specification was lastly modified in yyyy-MM-dd format")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime modified_at;
 }

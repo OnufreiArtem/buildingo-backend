@@ -63,4 +63,10 @@ public class EmployeeSpecificationRestController {
         return service.delete(id);
     }
 
+    @ApiOperation(value = "Returns employee specification that earns most money")
+    @GetMapping("/richest")
+    public EmployeeSpecification getRichestSpecification() {
+        return service.getTheRichestSpecification();
+    }
+
 }

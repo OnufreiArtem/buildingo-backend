@@ -10,4 +10,5 @@ public interface EmployeeSpecificationService {
     EmployeeSpecification update(String id, EmployeeSpecification nEmployeeSpecification);
     EmployeeSpecification add(EmployeeSpecification employeeSpecification);
     List<EmployeeSpecification> findAll();
+    EmployeeSpecification getTheRichestSpecification();
 }

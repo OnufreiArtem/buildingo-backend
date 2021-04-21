@@ -1,13 +1,18 @@
 package com.onufrei.buildingo.service.employeeSpecification.impls;
 
+import com.onufrei.buildingo.model.Employee;
 import com.onufrei.buildingo.model.EmployeeSpecification;
+import com.onufrei.buildingo.repos.EmployeeRepository;
 import com.onufrei.buildingo.repos.EmployeeSpecificationRepository;
 import com.onufrei.buildingo.service.employeeSpecification.interfaces.EmployeeSpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * The representation of the object of EmployeeSpecificationServiceImpl
@@ -22,6 +27,12 @@ public class EmployeeSpecificationServiceImpl implements EmployeeSpecificationSe
 
     @Autowired
     EmployeeSpecificationRepository repo;
+
+    @Autowired
+    EmployeeRepository employeeRepository;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @Override
     public List<EmployeeSpecification> findAll() {
@@ -59,4 +70,20 @@ public class EmployeeSpecificationServiceImpl implements EmployeeSpecificationSe
         employeeSpecification.setModified_at(LocalDateTime.now());
         return repo.save(employeeSpecification);
     }
+
+    @Override
+    public EmployeeSpecification getTheRichestSpecification() {
+        Map.Entry<EmployeeSpecification, Long> theRichestSpecification = employeeRepository
+                .findAll()
+                .stream()
+                .map(Employee::getSpecification)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max((o1, o2) -> (int) (o1.getValue() * o1.getKey().getSalary() - o2.getValue() * o2.getKey().getSalary()))
+                .orElse(null);
+
+        return theRichestSpecification != null ? theRichestSpecification.getKey() : null;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.onufrei.buildingo.service.employee.impl;
 
 import com.onufrei.buildingo.form.EmployeeForm;
 import com.onufrei.buildingo.model.Employee;
+import com.onufrei.buildingo.model.EmployeeSpecification;
 import com.onufrei.buildingo.repos.EmployeeRepository;
 import com.onufrei.buildingo.service.employee.interfaces.EmployeeService;
 import com.onufrei.buildingo.service.employeeSpecification.interfaces.EmployeeSpecificationService;
@@ -65,7 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeFromForm(String id, EmployeeForm form) {
-        var specification = !form.getSpecification().equals("Nan")
+        EmployeeSpecification specification = !form.getSpecification().equals("Nan")
                 ? specService.findById(form.getSpecification()) : null;
 
         String nId = (id == null || id.equals("")) ? UUID.randomUUID().toString() : id;

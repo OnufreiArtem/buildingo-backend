@@ -76,7 +76,7 @@ public class EmployeeUIController {
 
     @PostMapping("/add")
     public String addEmployee(@ModelAttribute EmployeeForm employeeForm, Model model) {
-        var employeeToUpdate = service.getEmployeeFromForm(null, employeeForm);
+        Employee employeeToUpdate = service.getEmployeeFromForm(null, employeeForm);
         service.add(employeeToUpdate);
         return "redirect:/employee";
     }

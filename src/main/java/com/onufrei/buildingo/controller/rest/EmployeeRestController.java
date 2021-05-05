@@ -15,6 +15,7 @@ import java.util.List;
  * @since 03.03.2021
  */
 
+@CrossOrigin
 @RequestMapping("/api/v1/employees")
 @RestController
 public class EmployeeRestController {

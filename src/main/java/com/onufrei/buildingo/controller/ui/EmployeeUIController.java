@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @version 1
  * @since 09.03.2021
  */
+@CrossOrigin
 @RequestMapping("/employee")
 @Controller
 public class EmployeeUIController {

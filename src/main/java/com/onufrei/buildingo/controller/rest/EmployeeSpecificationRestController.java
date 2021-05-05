@@ -16,6 +16,7 @@ import java.util.List;
  * @version 1
  * @since 08.04.2021
  */
+@CrossOrigin
 @RequestMapping("/api/v1/employee-specifications")
 @RestController
 public class EmployeeSpecificationRestController {
